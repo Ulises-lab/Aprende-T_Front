@@ -1,42 +1,16 @@
-import axios from "axios";
+import {api} from './api';
 import * as USER_HELPERS from "../utils/userToken";
-
-// here we are just maing our code look more DRY. With every backend call we must deal with errors and success states. The idea of creating these kinds of services is to make our lives easier in the components
-function internalServerError(err) {
-  if (err.response && err.response.data && err.response.data.errorMessage) {
-    return {
-      status: false,
-      errorMessage: err.response.data.errorMessage,
-    };
-  }
-  return {
-    status: false,
-    errorMessage: "Internal server error. Please check your server",
-  };
-}
-
-function successStatus(res) {
-  return {
-    status: true,
-    data: res.data,
-  };
-}
-
-// creates a basic url for every request in this file
-const authService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/auth`,
-  withCredentials:true
-});
+import { successStatus, internalServerError } from "../utils/format-responses";
 
 export function login(credentials) {
-  return authService
-    .post("/login", credentials)
+  return api
+    .post("/auth/login", credentials)
     .then(successStatus)
     .catch(internalServerError);
 }
 
 export function getLoggedIn() {
-  return authService
+  return api
     .get(`session`, {
       headers: {
         Authorization: USER_HELPERS.getUserToken(),
@@ -47,19 +21,28 @@ export function getLoggedIn() {
 }
 
 export function signup(credentials) {
-  return authService
-    .post("/signup", credentials)
+  return api
+    .post("/auth/signup", credentials)
     .then(successStatus)
     .catch(internalServerError);
 }
 
 export function logout() {
-  return authService
-    .delete("/logout", {
+  return api
+    .delete("/auth/logout", {
       headers: {
         Authorization: USER_HELPERS.getUserToken(),
       },
     })
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
+export function recoverPassword(credentials) {
+
+  console.log(credentials,'las credenciales')
+  return api
+    .post("/auth/recoverPassword", credentials)
     .then(successStatus)
     .catch(internalServerError);
 }

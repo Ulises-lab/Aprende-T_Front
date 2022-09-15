@@ -30,7 +30,7 @@ export default function Signup({ authenticate }) {
     signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
-        console.error("Signup was unsuccessful: ", res);
+        console.error("El registro no fue exitoso, intentalo de nuevo", res);
         return setError({
           message: res.errorMessage,
         });
@@ -38,15 +38,15 @@ export default function Signup({ authenticate }) {
       // successful signup
       USER_HELPERS.setUserToken(res.data.accessToken);
       authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
+      navigate(PATHS.USERPROFILE);
     });
   }
 
   return (
     <div>
-      <h1>Sign Up</h1>
+      <h1>Registro</h1>
       <form onSubmit={handleFormSubmission} className="auth__form">
-        <label htmlFor="input-username">Nombre</label>
+        <label htmlFor="input-username">Nombre: </label>
         <input
           id="input-username"
           type="text"
@@ -57,7 +57,7 @@ export default function Signup({ authenticate }) {
           required
         />
 
-        <label htmlFor="input-lastname">Apellido</label>
+        <label htmlFor="input-lastname">Apellido: </label>
         <input
           id="input-lastname"
           type="text"
@@ -68,7 +68,7 @@ export default function Signup({ authenticate }) {
           required
         />
 
-        <label htmlFor="input-email">Email</label>
+        <label htmlFor="input-email">Correo: </label>
         <input
           id="input-email"
           type="email"
@@ -79,17 +79,16 @@ export default function Signup({ authenticate }) {
           required
         />
 
-        <label htmlFor="input-image">Imagen</label>
+        <label htmlFor="input-image">Imagen: </label>
         <input
           id="input-profile_pic"
           type="file"
           name="profile_pic"
-          placeholder="image"
           value={profile_pic}
           onChange={handleInputChange}
         />
 
-        <label htmlFor="input-password">Password</label>
+        <label htmlFor="input-password">Password: </label>
         <input
           id="input-password"
           type="password"
@@ -103,13 +102,13 @@ export default function Signup({ authenticate }) {
 
         {error && (
           <div className="error-block">
-            <p>There was an error submiting the form:</p>
+            <p>Ocurrio un error en el formulario: </p>
             <p>{error.message}</p>
           </div>
         )}
 
         <button className="button__submit" type="submit">
-          Submit
+          Enviar
         </button>
       </form>
     </div>

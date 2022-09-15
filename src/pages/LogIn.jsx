@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "./Signup";
 import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
+import { Link } from "react-router-dom";
 
 export default function LogIn({ authenticate }) {
+  console.log(authenticate,'authenticate es')
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -28,19 +30,19 @@ export default function LogIn({ authenticate }) {
     };
     login(credentials).then((res) => {
       if (!res.status) {
-        return setError({ message: "Invalid credentials" });
+        return setError({ message: "Credenciales invalidas" });
       }
       USER_HELPERS.setUserToken(res.data.accessToken);
       authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
+      navigate(PATHS.USERPROFILE);
     });
   }
 
   return (
     <div>
-      <h1>Log In</h1>
+      <h1>Ingresar</h1>
       <form onSubmit={handleFormSubmission} className="signup__form">
-        <label htmlFor="input-email">Username</label>
+        <label htmlFor="input-email">Correo: </label>
         <input
           id="input-email"
           type="email"
@@ -51,7 +53,7 @@ export default function LogIn({ authenticate }) {
           required
         />
 
-        <label htmlFor="input-password">Password</label>
+        <label htmlFor="input-password">Password: </label>
         <input
           id="input-password"
           type="password"
@@ -65,13 +67,17 @@ export default function LogIn({ authenticate }) {
 
         {error && (
           <div className="error-block">
-            <p>There was an error submiting the form:</p>
+            <p>Ocurrio un error al ingresar tus credenciales:</p>
             <p>{error.message}</p>
           </div>
         )}
 
+        <div>
+          <Link to='/auth/recoverPassword'>Recuperar password</Link>
+        </div>
+
         <button className="button__submit" type="submit">
-          Submit
+          Enviar
         </button>
       </form>
     </div>

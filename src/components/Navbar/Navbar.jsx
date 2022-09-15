@@ -3,13 +3,18 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
+import  {LearnIcon, IconTwo}  from "../../icons";
+
+
 
 const Navbar = (props) => {
   return (
     <nav>
       <Link to={PATHS.HOMEPAGE} className="nav__projectName">
-        {CONSTS.APP_NAME}
+        {CONSTS.APP_NAME} <LearnIcon/>
       </Link>
+      
+      
 
       <div className="nav__authLinks">
         {props.user ? (
