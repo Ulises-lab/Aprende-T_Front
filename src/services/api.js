@@ -3,10 +3,10 @@ import axios from "axios";
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-const baseURL = isProduction ? 'http://Aprende-T.com/api' : 'http://localhost:5005/api';
+const baseURL = isProduction ? 'https://aprende-t-back.herokuapp.com/api' : 'http://localhost:5005/api';
 
 export const api = axios.create({
-    baseURL,
+    baseURL: 'https://aprende-t-back.herokuapp.com/api',
     withCredentials: true,
     timeout: 10000
 })
