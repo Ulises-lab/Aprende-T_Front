@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.dark {
+  background: #282c34;
+  color: white;
+}
+
+.themes {
+  display: flex;
+  position: sticky;
+  top: 100px;
+  left: 750px;
+}

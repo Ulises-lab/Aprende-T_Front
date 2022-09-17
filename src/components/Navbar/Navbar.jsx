@@ -13,9 +13,6 @@ const Navbar = (props) => {
       <Link to={PATHS.HOMEPAGE} className="nav__projectName">
         {CONSTS.APP_NAME} <LearnIcon/>
       </Link>
-      
-      
-
       <div className="nav__authLinks">
         {props.user ? (
           <>
