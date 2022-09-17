@@ -29,13 +29,13 @@ export default function FormVideo() {
         <TextField
           error
           id="outlined-error"
-          label="Error"
+          label="Nombre de Curso"
           defaultValue="Hello World"
         />
         <TextField
           error
           id="outlined-error-helper-text"
-          label="Error"
+          label="Imagen del curso"
           defaultValue="Hello World"
           helperText="Incorrect entry."
         />
@@ -44,14 +44,14 @@ export default function FormVideo() {
         <TextField
           error
           id="filled-error"
-          label="Error"
+          label="Nombre de Video"
           defaultValue="Hello World"
           variant="filled"
         />
         <TextField
           error
           id="filled-error-helper-text"
-          label="Error"
+          label="Subir video"
           defaultValue="Hello World"
           helperText="Incorrect entry."
           variant="filled"
@@ -61,14 +61,14 @@ export default function FormVideo() {
         <TextField
           error
           id="standard-error"
-          label="Error"
+          label="Nombre de Instructor"
           defaultValue="Hello World"
           variant="standard"
         />
         <TextField
           error
           id="standard-error-helper-text"
-          label="Error"
+          label="Duracion del curso"
           defaultValue="Hello World"
           helperText="Incorrect entry."
           variant="standard"
